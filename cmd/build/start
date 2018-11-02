@@ -1,0 +1,3 @@
+#!/bin/bash
+cmd/build/make-and-uglify
+cmd/build/minify

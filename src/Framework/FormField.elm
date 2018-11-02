@@ -1,14 +1,23 @@
 module Framework.FormField exposing
-    ( Field(..), Model, Msg(..), initModel, inputText, introspection, update
-    , example5, example6, example7, example8, example9, inputPassword
+    ( inputText, inputPassword
+    , introspection, example5, example6, example7, example8, example9, Field(..), Model, Msg(..), initModel, update
     )
 
-{-|
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Fields/Text)
+
+[![Fields](https://lucamug.github.io/style-framework/images/demos/fields.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Fields/Text)
 
 
-# Functions
+# Input fields
 
-@docs Field, Model, Msg, example1, initModel, inputText, introspection, update
+@docs inputText, inputPassword
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection, example5, example6, example7, example8, example9, Field, Model, Msg, initModel, update
 
 -}
 
@@ -124,6 +133,7 @@ update msg model =
             ( { model | enteredField = Just field }, Cmd.none )
 
 
+newHelperText : Maybe a -> a -> String -> Maybe (Element msg)
 newHelperText enteredField field value =
     let
         extraText =
@@ -173,6 +183,8 @@ newHelperText enteredField field value =
 -- Constants
 
 
+{-| -}
+helperTextFormat : String -> Color.Color -> Element msg
 helperTextFormat t color =
     row
         [ Font.color <| Color.toElementColor color
@@ -184,14 +196,25 @@ helperTextFormat t color =
         ]
 
 
+{-| -}
+errorColor : Color.Color
 errorColor =
     Color.rgb 200 0 0
 
 
+{-| -}
+infoColor : Color.Color
 infoColor =
     Color.rgb 0 150 0
 
 
+{-| -}
+maybeShowHidePassword :
+    Maybe
+        { maybeHideIcon : Maybe a1
+        , maybeShowIcon : Maybe a
+        , msgOnViewToggle : Field -> Msg
+        }
 maybeShowHidePassword =
     Just
         { maybeHideIcon = Nothing
@@ -200,10 +223,7 @@ maybeShowHidePassword =
         }
 
 
-
--- Introspection
-
-
+{-| -}
 example5 : Model -> ( Element Msg, String )
 example5 model =
     ( inputText
@@ -270,6 +290,7 @@ inputText
     )
 
 
+{-| -}
 example6 : Model -> ( Element Msg, String )
 example6 model =
     ( inputText
@@ -304,6 +325,7 @@ inputText
     )
 
 
+{-| -}
 example9 : Model -> ( Element Msg, String )
 example9 model =
     ( inputText
@@ -338,6 +360,7 @@ inputText
     )
 
 
+{-| -}
 example7 : Model -> ( Element Msg, String )
 example7 model =
     ( inputPassword
@@ -412,6 +435,7 @@ inputPassword
     )
 
 
+{-| -}
 example8 : Model -> ( Element Msg, String )
 example8 model =
     ( inputPassword
@@ -489,6 +513,17 @@ onEnter msg =
         |> Html.Events.on "keyup"
 
 
+{-| -}
+attrs :
+    { b
+        | field : a1
+        , inputTypeAttrs : List (Attribute a)
+        , maybeFieldFocused : Maybe a1
+        , maybeMsgOnEnter : Maybe (a1 -> a)
+        , msgOnFocus : a1 -> a
+        , msgOnLoseFocus : a1 -> a
+    }
+    -> List (Attribute a)
 attrs { msgOnFocus, msgOnLoseFocus, maybeMsgOnEnter, inputTypeAttrs, field, maybeFieldFocused } =
     let
         focused =
@@ -524,6 +559,15 @@ attrs { msgOnFocus, msgOnLoseFocus, maybeMsgOnEnter, inputTypeAttrs, field, mayb
         ++ inputTypeAttrs
 
 
+{-| -}
+labelBuilder :
+    { b
+        | field : a
+        , fieldValue : String
+        , label : Element msg
+        , maybeFieldFocused : Maybe a
+    }
+    -> Input.Label msg
 labelBuilder { maybeFieldFocused, field, fieldValue, label } =
     let
         focused =
@@ -553,6 +597,21 @@ labelBuilder { maybeFieldFocused, field, fieldValue, label } =
         label
 
 
+{-| -}
+inputFieldParameterForText :
+    { c
+        | field : a1
+        , fieldValue : String
+        , label : Element msg
+        , maybeFieldFocused : Maybe a1
+        , msgOnChange : a1 -> b
+    }
+    ->
+        { label : Input.Label msg
+        , onChange : b
+        , placeholder : Maybe a
+        , text : String
+        }
 inputFieldParameterForText conf =
     { onChange = conf.msgOnChange conf.field
     , placeholder = Nothing
@@ -561,6 +620,23 @@ inputFieldParameterForText conf =
     }
 
 
+{-| -}
+inputFieldParameterForPassword :
+    { c
+        | field : a1
+        , fieldValue : String
+        , label : Element msg
+        , maybeFieldFocused : Maybe a1
+        , msgOnChange : a1 -> b
+    }
+    -> d
+    ->
+        { label : Input.Label msg
+        , onChange : b
+        , placeholder : Maybe a
+        , show : d
+        , text : String
+        }
 inputFieldParameterForPassword conf show =
     let
         temp =
@@ -574,6 +650,22 @@ inputFieldParameterForPassword conf show =
     }
 
 
+{-| -}
+inputGeneric :
+    List (Attribute msg)
+    ->
+        { c
+            | field : a1
+            , helperText : Maybe (Element msg)
+            , inputType : List (Attribute a) -> b -> Element msg
+            , inputTypeAttrs : List (Attribute a)
+            , maybeFieldFocused : Maybe a1
+            , maybeMsgOnEnter : Maybe (a1 -> a)
+            , msgOnFocus : a1 -> a
+            , msgOnLoseFocus : a1 -> a
+        }
+    -> b
+    -> Element msg
 inputGeneric mainAttrs conf inputFieldParameters =
     let
         inputField =
@@ -590,6 +682,7 @@ inputGeneric mainAttrs conf inputFieldParameters =
                 [ inputField ]
 
 
+{-| -}
 inputText :
     List (Attribute msg)
     ->
@@ -618,6 +711,7 @@ inputText mainAttrs conf =
     inputGeneric mainAttrs conf (inputFieldParameterForText conf)
 
 
+{-| -}
 inputPassword :
     List (Attribute msg)
     ->

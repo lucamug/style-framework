@@ -112,7 +112,7 @@ conf =
         , size7 = getFloat "size7"
         }
     , color =
-        { -- Gray Scale
+        { -- Grey Scale
           black = getColor "black"
         , black_bis = getColor "black_bis"
         , black_ter = getColor "black_ter"
@@ -389,7 +389,7 @@ findColorInvert color =
 configuration : Dict.Dict String String
 configuration =
     Dict.fromList
-        [ -- Gray Scale
+        [ -- Grey Scale
           ( "black", bulmaColor.black )
         , ( "black_bis", bulmaColor.black_bis )
         , ( "black_ter", bulmaColor.black_ter )

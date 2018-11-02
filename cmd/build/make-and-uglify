@@ -1,0 +1,19 @@
+#!/bin/bash
+printf "\n\e[0;32m🍣   Compiling optimized version...\e[0m\n\n"
+rm -rf temp
+cp src/myStyle.elm.example src/myStyle.elm
+node_modules/.bin/elm make --output=temp/temp1.js src/Framework.elm --optimize
+node_modules/.bin/elm make --output=temp/temp2.js examples/exampleButton/src/Main.elm --optimize
+rm src/MyStyle.elm
+cd examples/exampleCustomized
+../../node_modules/.bin/elm make --output=../../temp/temp3.js src/FrameworkCustomized.elm --optimize
+cd ../..
+cd examples/exampleSPA
+../../node_modules/.bin/elm make --output=../../temp/temp4.js src/Main.elm --optimize
+cd ../..
+printf "\n\e[0;32m🍣   Uglifying...\e[0m\n\n"
+node_modules/.bin/uglifyjs temp/temp1.js --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | uglifyjs --mangle --output=docs/js/framework.js
+node_modules/.bin/uglifyjs temp/temp2.js --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | uglifyjs --mangle --output=docs/js/exampleButton.js
+node_modules/.bin/uglifyjs temp/temp3.js --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | uglifyjs --mangle --output=docs/js/exampleCustomized.js
+node_modules/.bin/uglifyjs temp/temp4.js --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | uglifyjs --mangle --output=docs/js/exampleSPA.js
+printf "\n\e[0;32m🍺   Done\e[0m\n"

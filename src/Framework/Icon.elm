@@ -1,18 +1,31 @@
 module Framework.Icon exposing
-    ( arrows, chevronDown, exitFullscreen, fullscreen, hide, home, introspection, mobileNotification, mobileNotification2, mobileRinging, pencil, show
-    , blackFlag, blackFlag_, blackStar, blackStar_, circle, circle_, edit, edit_, exclamation, exclamation_, featureFlag, featureFlag_, smile, smile_, userVerification, userVerification_, whiteFlag, whiteFlag_, whiteStar, whiteStar_, whitelist, whitelist_
+    ( arrows, chevronDown, exitFullscreen, fullscreen, hide, home, mobileNotification, mobileNotification2, mobileRinging, pencil, show, blackFlag, blackStar, circle, edit, exclamation, featureFlag, smile, userVerification, whiteFlag, whiteStar, whitelist
+    , blackFlag_, blackStar_, circle_, edit_, exclamation_, featureFlag_, smile_, userVerification_, whiteFlag_, whiteStar_, whitelist_
+    , introspection
     )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Icons/Icons)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Icons/Icons)
+
+[![Icons](https://lucamug.github.io/style-framework/images/demos/icons.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Icons/Icons)
 
 
-# Functions
+# Icons (Element msg)
 
-@docs arrows, chevronDown, exitFullscreen, fullscreen, hide, home, introspection, mobileNotification, mobileNotification2, mobileRinging, pencil, show
+@docs arrows, chevronDown, exitFullscreen, fullscreen, hide, home, mobileNotification, mobileNotification2, mobileRinging, pencil, show, blackFlag, blackStar, circle, edit, exclamation, featureFlag, smile, userVerification, whiteFlag, whiteStar, whitelist
+
+
+# Icons (Html msg)
+
+@docs blackFlag_, blackStar_, circle_, edit_, exclamation_, featureFlag_, smile_, userVerification_, whiteFlag_, whiteStar_, whitelist_
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection
 
 -}
-
--- import Color
 
 import Color
 import Element
@@ -231,6 +244,7 @@ smile cl size =
         smile_ cl size
 
 
+{-| -}
 exclamation_ : Color.Color -> Int -> Html.Html msg
 exclamation_ cl size =
     Svg.svg [ SA.viewBox "0 0 612 612", SA.height <| String.fromInt size ]
@@ -238,18 +252,21 @@ exclamation_ cl size =
         ]
 
 
+{-| -}
 exclamation : Color.Color -> Int -> Element.Element msg
 exclamation cl size =
     Element.html <|
         exclamation_ cl size
 
 
+{-| -}
 edit : Color.Color -> Int -> Element.Element msg
 edit cl size =
     Element.html <|
         edit_ cl size
 
 
+{-| -}
 edit_ : Color.Color -> Int -> Html.Html msg
 edit_ cl size =
     Svg.svg [ SA.viewBox "0 0 490 490", SA.height <| String.fromInt size ]
@@ -258,12 +275,14 @@ edit_ cl size =
         ]
 
 
+{-| -}
 userVerification : Color.Color -> Int -> Element.Element msg
 userVerification cl size =
     Element.html <|
         userVerification_ cl size
 
 
+{-| -}
 userVerification_ : Color.Color -> Int -> Html.Html msg
 userVerification_ cl size =
     Svg.svg [ SA.viewBox "0 0 512 512", SA.height <| String.fromInt size ]
@@ -272,12 +291,14 @@ userVerification_ cl size =
         ]
 
 
+{-| -}
 featureFlag : Color.Color -> Int -> Element.Element msg
 featureFlag cl size =
     Element.html <|
         featureFlag_ cl size
 
 
+{-| -}
 featureFlag_ : Color.Color -> Int -> Html.Html msg
 featureFlag_ cl size =
     Svg.svg [ SA.viewBox "0 0 60 60", SA.height <| String.fromInt size ]
@@ -285,12 +306,14 @@ featureFlag_ cl size =
         ]
 
 
+{-| -}
 blackFlag : Color.Color -> Int -> Element.Element msg
 blackFlag cl size =
     Element.html <|
         blackFlag_ cl size
 
 
+{-| -}
 blackFlag_ : Color.Color -> Int -> Html.Html msg
 blackFlag_ cl size =
     Svg.svg [ SA.viewBox "0 0 512 512", SA.height <| String.fromInt size ]
@@ -298,12 +321,14 @@ blackFlag_ cl size =
         ]
 
 
+{-| -}
 whiteFlag : Color.Color -> Int -> Element.Element msg
 whiteFlag cl size =
     Element.html <|
         whiteFlag_ cl size
 
 
+{-| -}
 whiteFlag_ : Color.Color -> Int -> Html.Html msg
 whiteFlag_ cl size =
     Svg.svg [ SA.viewBox "0 0 464 464", SA.height <| String.fromInt size ]
@@ -311,12 +336,14 @@ whiteFlag_ cl size =
         ]
 
 
+{-| -}
 whiteStar : Color.Color -> Int -> Element.Element msg
 whiteStar cl size =
     Element.html <|
         whiteStar_ cl size
 
 
+{-| -}
 whiteStar_ : Color.Color -> Int -> Html.Html msg
 whiteStar_ cl size =
     Svg.svg [ SA.viewBox "0 0 326 326", SA.height <| String.fromInt size ]
@@ -324,12 +351,14 @@ whiteStar_ cl size =
         ]
 
 
+{-| -}
 blackStar : Color.Color -> Int -> Element.Element msg
 blackStar cl size =
     Element.html <|
         blackStar_ cl size
 
 
+{-| -}
 blackStar_ : Color.Color -> Int -> Html.Html msg
 blackStar_ cl size =
     Svg.svg [ SA.viewBox "0 0 88 88", SA.height <| String.fromInt size ]
@@ -337,12 +366,14 @@ blackStar_ cl size =
         ]
 
 
+{-| -}
 whitelist : Color.Color -> Int -> Element.Element msg
 whitelist cl size =
     Element.html <|
         whitelist_ cl size
 
 
+{-| -}
 whitelist_ : Color.Color -> Int -> Html.Html msg
 whitelist_ cl size =
     Svg.svg [ SA.viewBox "0 0 500 500", SA.height <| String.fromInt size ]

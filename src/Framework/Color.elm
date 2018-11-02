@@ -1,14 +1,65 @@
 module Framework.Color exposing
-    ( background, black, black_bis, black_ter, blue, border, border_hover, code, code_background, cyan, danger, dark, green, grey, grey_dark, grey_darker, grey_light, grey_lighter, info, introspection, light, link, link_active, link_active_border, link_focus, link_focus_border, link_hover, link_hover_border, link_invert, link_visited, muted, orange, pre, pre_background, primary, purple, red, success, text, text_light, text_strong, transparent, turquoise, warning, white, white_bis, white_ter, yellow
-    , disabledButtonBackground, disabledButtonFont
+    ( orange, yellow, green, turquoise, cyan, blue, purple, red
+    , black, black_bis, black_ter, grey_darker, grey_dark, grey, grey_light, grey_lighter, white_ter, white_bis, white
+    , primary, info, success, warning, danger, light, dark
+    , text, text_light, text_strong, code, code_background, pre, pre_background
+    , link, link_active, link_active_border, link_focus, link_focus_border, link_hover, link_hover_border, link_invert, link_visited
+    , background, border, border_hover, muted, transparent, disabledButtonBackground, disabledButtonFont
+    , introspection
     )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Colors/Gray%20Scale)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Colors/Colors)
+
+[![Cards](https://lucamug.github.io/style-framework/images/demos/colors.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Colors/Colors)
+
+Colors are inspired by the Bulma framework: <https://bulma.io/documentation/overview/variables/>
 
 
-# Functions
+# Colors
 
-@docs background, black, black_bis, black_ter, blue, border, border_hover, code, code_background, cyan, danger, dark, green, grey, grey_dark, grey_darker, grey_light, grey_lighter, info, introspection, light, link, link_active, link_active_border, link_focus, link_focus_border, link_hover, link_hover_border, link_invert, link_visited, muted, orange, pre, pre_background, primary, purple, red, success, text, text_light, text_strong, transparent, turquoise, warning, white, white_bis, white_ter, yellow
+@docs orange, yellow, green, turquoise, cyan, blue, purple, red
+
+
+# Grey Scale
+
+[Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Colors/Grey%20Scale)
+
+@docs black, black_bis, black_ter, grey_darker, grey_dark, grey, grey_light, grey_lighter, white_ter, white_bis, white
+
+
+# Derived
+
+[Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Colors/Derived)
+
+@docs primary, info, success, warning, danger, light, dark
+
+
+# Fonts
+
+[Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Colors/Fonts)
+
+@docs text, text_light, text_strong, code, code_background, pre, pre_background
+
+
+# Links
+
+[Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Colors/Links)
+
+@docs link, link_active, link_active_border, link_focus, link_focus_border, link_hover, link_hover_border, link_invert, link_visited
+
+
+# Others
+
+[Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Colors/Others)
+
+@docs background, border, border_hover, muted, transparent, disabledButtonBackground, disabledButtonFont
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection
 
 -}
 
@@ -45,7 +96,7 @@ introspection =
             , ( usageWrapper <| red, "red" )
             ]
           )
-        , ( "Gray Scale"
+        , ( "Grey Scale"
           , [ ( usageWrapper <| black, "black" )
             , ( usageWrapper <| black_bis, "black_bis" )
             , ( usageWrapper <| black_ter, "black_ter" )
@@ -372,11 +423,13 @@ transparent =
     conf.color.transparent
 
 
+{-| -}
 disabledButtonBackground : Color.Color
 disabledButtonBackground =
     conf.color.grey_lighter
 
 
+{-| -}
 disabledButtonFont : Color.Color
 disabledButtonFont =
     conf.color.grey_light

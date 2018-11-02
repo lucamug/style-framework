@@ -1,19 +1,46 @@
 module Framework.Button exposing
-    ( button, buttonAttr, buttonLink, buttonLinkWidth, buttonWidth, introspection
-    , buttonWithCustomizableWith
+    ( button, buttonWidth
+    , buttonLink, buttonLinkWidth
+    , buttonCustomizable
+    , buttonAttr
+    , introspection
     )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Buttons/States)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Buttons/States)
+
+[![Buttons](https://lucamug.github.io/style-framework/images/demos/buttons.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Buttons/States)
 
 
-# Functions
+# Buttons
 
-@docs button, buttonAttr, buttonLink, buttonLinkWidth, buttonWidth, introspection
+@docs button, buttonWidth
+
+
+# Buttons as Link
+
+@docs buttonLink, buttonLinkWidth
+
+
+# Customizable Buttons
+
+@docs buttonCustomizable
+
+
+# Button Attributes
+
+@docs buttonAttr
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection
 
 -}
 
 import Color
-import Element exposing (Attribute, Element, centerX, centerY, column, el, htmlAttribute, inFront, link, mouseOver, paddingXY, row, spacing, text)
+import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
@@ -238,7 +265,7 @@ processConf modifier confButton =
             { confButton | state = StateDisabled }
 
 
-{-| Generate an Input.button element
+{-| Generate an Input.button element. Example:
 
     button [ Medium, Success, Outlined ] Nothing "Button"
 
@@ -296,16 +323,15 @@ buttonLinkWidth modifiers url label width =
 
 
 {-| -}
-buttonWithCustomizableWith :
-    { a
-        | width : Int
-        , label : String
-        , onPress : Maybe msg
-        , modifiers : List Modifier
-        , extraAttrs : List (Attribute msg)
+buttonCustomizable :
+    { width : Int
+    , label : String
+    , onPress : Maybe msg
+    , modifiers : List Modifier
+    , extraAttrs : List (Attribute msg)
     }
     -> Element msg
-buttonWithCustomizableWith { onPress, modifiers, label, width, extraAttrs } =
+buttonCustomizable { onPress, modifiers, label, width, extraAttrs } =
     Input.button
         (buttonAttr modifiers
             ++ extraAttrForButtonWithCustimazibleWidth width

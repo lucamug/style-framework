@@ -1,0 +1,24 @@
+#!/bin/bash
+printf "\n\e[0;32m🍣   Copying to temp...\e[0m\n\n"
+rm -rf temp
+mkdir temp
+cp docs/dev-framework.html                    temp/temp1.html
+cp examples/exampleButton/docs/index.html     temp/temp2.html
+cp examples/exampleSPA/docs/index.html        temp/temp3.html
+cp examples/exampleCustomized/docs/index.html temp/temp4.html
+printf "\n\e[0;32m🍣   Removing development scripts ...\e[0m\n\n"
+node_modules/.bin/replace '(<script class="dev-only".*</script>)' '<!-- $1 -->' temp/temp1.html -m -i
+node_modules/.bin/replace '(<script class="dev-only".*</script>)' '<!-- $1 -->' temp/temp2.html -m -i
+node_modules/.bin/replace '(<script class="dev-only".*</script>)' '<!-- $1 -->' temp/temp3.html -m -i
+node_modules/.bin/replace '(<script class="dev-only".*</script>)' '<!-- $1 -->' temp/temp4.html -m -i
+printf "\n\e[0;32m🍣   Adding production scripts ...\e[0m\n\n"
+node_modules/.bin/replace '<!-- prod-only (.*) -->' '$1' temp/temp1.html -m -i
+node_modules/.bin/replace '<!-- prod-only (.*) -->' '$1' temp/temp2.html -m -i
+node_modules/.bin/replace '<!-- prod-only (.*) -->' '$1' temp/temp3.html -m -i
+node_modules/.bin/replace '<!-- prod-only (.*) -->' '$1' temp/temp4.html -m -i
+printf "\n\e[0;32m🍣   Minifing temp.html ...\e[0m\n\n"
+node_modules/.bin/html-minifier -o docs/generated-framework.html         temp/temp1.html --minify-css --minify-js --collapse-whitespace --remove-comments
+node_modules/.bin/html-minifier -o docs/generated-exampleButton.html     temp/temp2.html --minify-css --minify-js --collapse-whitespace --remove-comments
+node_modules/.bin/html-minifier -o docs/generated-exampleSPA.html        temp/temp3.html --minify-css --minify-js --collapse-whitespace --remove-comments
+node_modules/.bin/html-minifier -o docs/generated-exampleCustomized.html temp/temp4.html --minify-css --minify-js --collapse-whitespace --remove-comments
+printf "Done\n"

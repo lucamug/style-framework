@@ -1,13 +1,23 @@
-module Framework.Card exposing (Model, Msg, example1, flipping, initModel, introspection, simple, simpleWithTitle, update, normal)
+module Framework.Card exposing
+    ( flipping, simpleWithTitle, simple
+    , introspection, example1, Model, Msg, initModel, update
+    )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Cards/Flipping)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Cards/Flipping)
 
-Wrapper for content
+[![Cards](https://lucamug.github.io/style-framework/images/demos/cards.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Cards/Flipping)
 
 
-# Functions
+# Cards
 
-@docs Model, Msg, example1, flipping, initModel, introspection, simple, simpleWithTitle, update, normal
+@docs flipping, simpleWithTitle, simple
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection, example1, Model, Msg, initModel, update
 
 -}
 
@@ -204,9 +214,6 @@ simple content =
             ++ [ padding 20
                , width fill
                , height shrink
-
-               -- TODO fix this shadow
-               -- , Border.shadow { blur = 10, color = Color.rgba 0 0 0 0.05, offset = ( 0, 2 ), size = 1 }
                ]
         )
     <|
@@ -239,37 +246,36 @@ flipping data =
                    -- Chrome has a bug during flipping from back to Front
                    -- maybe this could be used as hint? https://stackoverflow.com/questions/34062061/css-flip-card-bug-in-chrome
                    ]
-                ++ stylexxx "backface-visibility" "hidden"
-                ++ stylexxx "position" "absolute"
+                ++ style_ "backface-visibility" "hidden"
+                ++ style_ "position" "absolute"
     in
     column
-        -- width 500 -> 2000px
-        (alignTop :: stylexxx "perspective" "1500px")
+        (alignTop :: style_ "perspective" "1500px")
         [ html <| Html.node "style" [] [ Html.text "alignbottom, alignright {pointer-events:none}" ]
         , row
             ([ width <| x
              , height <| y
              ]
-                ++ stylexxx "transition" "transform 0.7s cubic-bezier(0.365, 1.440, 0.430, 0.965)"
-                ++ stylexxx "transform-style" "preserve-3d"
+                ++ style_ "transition" "transform 0.7s cubic-bezier(0.365, 1.440, 0.430, 0.965)"
+                ++ style_ "transform-style" "preserve-3d"
                 ++ (if data.activeFront then
-                        stylexxx "transform" "rotateY(0deg)"
+                        style_ "transform" "rotateY(0deg)"
 
                     else
-                        stylexxx "transform" "rotateY(180deg)"
+                        style_ "transform" "rotateY(180deg)"
                    )
             )
             [ -- The  "alignbottom {pointer-events:none}" is needed otherwise the right half
               -- is covered by alignbottom
               el
                 (commonAttr
-                    ++ stylexxx "transform" "rotateY(0deg)"
-                    ++ stylexxx "z-index" "2"
+                    ++ style_ "transform" "rotateY(0deg)"
+                    ++ style_ "z-index" "2"
                 )
               <|
                 data.front
             , el
-                (commonAttr ++ stylexxx "transform" "rotateY(180deg)")
+                (commonAttr ++ style_ "transform" "rotateY(180deg)")
               <|
                 data.back
             ]
@@ -277,8 +283,8 @@ flipping data =
 
 
 {-| -}
-stylexxx : String -> String -> List (Attribute msg)
-stylexxx key value =
+style_ : String -> String -> List (Attribute msg)
+style_ key value =
     if
         key
             == "backface-visibility"

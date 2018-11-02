@@ -1,6 +1,6 @@
 module Framework.Modifier exposing (Modifier(..))
 
-{-|
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Buttons/States)
 
 
 # Functions

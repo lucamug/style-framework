@@ -1,11 +1,29 @@
-module Framework.Logo exposing (Color(..), Logo(..), LogoElmType(..), introspection, logo)
+module Framework.Logo exposing
+    ( logo, Logo(..)
+    , LogoElmType(..), Color(..)
+    , introspection
+    )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Logos/Logos)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Logos/Logos)
+
+[![Logos](https://lucamug.github.io/style-framework/images/demos/logos.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Logos/Logos)
 
 
-# Functions
+# Logos
 
-@docs Logo, Color, LogoElmType, logo, introspection
+@docs logo, Logo
+
+
+# Logo Elm
+
+@docs LogoElmType, Color
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection
 
 -}
 
@@ -42,8 +60,7 @@ introspection =
     }
 
 
-{-| SVG Logo
--}
+{-| -}
 logo : Logo -> Int -> Element.Element msg
 logo lg size =
     Element.html <|
@@ -55,8 +72,7 @@ logo lg size =
                 elmLogo logoElmType size
 
 
-{-| Type of logos
--}
+{-| -}
 type Logo
     = LogoElm LogoElmType
     | LogoLucamug

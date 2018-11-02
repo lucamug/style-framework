@@ -5,13 +5,40 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Elm Style Framework</title>
+    <link rel="shortcut icon" href="https://lucamug.github.io/style-framework/images/favicon.png">
+    <title>Example SPA - Elm Style Framework</title>
 </head>
 
 <body>
-    <ul>
-        <li><a href="exampleSPA.html">exampleSPA.html</a></li>
-    </ul>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="elm"></div>
+    <script class="dev-only" src="js-dev/main.js"></script>
+    <!-- prod-only <script src="js/exampleSPA.js"></script> -->
+    <script>
+        (function() {
+            "use strict";
+
+            function start_app() {
+                var local_storage_name = "framework";
+                var flags = {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    locationHref: document.location.href
+                };
+                var app = Elm.ExampleSPA.init({
+                    flags: flags,
+                    node: document.getElementById('elm')
+                });
+                window.onpopstate = function() {
+                    app.ports.onPopState.send(location.href);
+                };
+            }
+
+            start_app();
+        })();
+    </script>
 </body>
 
 </html>

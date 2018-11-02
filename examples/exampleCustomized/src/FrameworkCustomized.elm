@@ -1,37 +1,52 @@
-module FrameworkCustomized exposing (initConf, main, view)
+module FrameworkCustomized exposing (initConf, main, view, viewDocument)
 
 import Browser
+import Browser.Navigation
 import Element exposing (alpha, column, el, link, moveLeft, none, paragraph, text)
 import Element.Font as Font
 import Framework
 import FrameworkCustomized.Logo as Logo
+import Html
+import Url
 
 
 main : Program Framework.Flags Framework.Model Framework.Msg
 main =
-    Browser.element
+    Browser.application
         { init = init
-        , view = view
+        , view = viewDocument
         , update = Framework.update
         , subscriptions = Framework.subscriptions
+        , onUrlRequest = Framework.LinkClicked
+        , onUrlChange = Framework.UrlChanged
         }
 
 
+viewDocument : Framework.Model -> Browser.Document Framework.Msg
+viewDocument =
+    Framework.viewDocument
+
+
+view : Framework.Model -> Html.Html Framework.Msg
 view =
     Framework.view
 
 
-init : Framework.Flags -> ( Framework.Model, Cmd msg )
-init flags =
+init :
+    Framework.Flags
+    -> Url.Url
+    -> Browser.Navigation.Key
+    -> ( Framework.Model, Cmd Framework.Msg )
+init flags url key =
     let
         initModel =
-            Framework.initModel flags
+            Framework.initModel flags url key
     in
     ( { initModel
         | conf = initConf
         , introspections = introspections
       }
-    , Framework.initCmd
+    , Framework.initCmd flags url key
     )
 
 
@@ -45,9 +60,8 @@ initConf =
     let
         confData =
             Framework.initConf
-    in
-    { confData
-        | title =
+
+        title =
             column
                 [ Font.family
                     [ Font.external
@@ -62,12 +76,16 @@ initConf =
                 , el [ moveLeft 3 ] <| text "Massive"
                 , el [ moveLeft 3 ] <| text "Dynamics"
                 ]
+    in
+    { confData
+        | titleLeftSide = title
+        , title = title
         , subTitle = "STYLE FRAMEWORK"
         , version = "0.19.0"
         , introduction =
             paragraph []
                 [ text "This is a cutomized version of "
-                , el [ Font.bold ] <| text "elm-style-elements"
+                , el [ Font.bold ] <| text "style-framework"
                 , text "."
                 ]
         , mainPadding = 41

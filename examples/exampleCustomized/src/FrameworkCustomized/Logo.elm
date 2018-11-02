@@ -1,6 +1,6 @@
 module FrameworkCustomized.Logo exposing (Logo(..), logo, introspection)
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Logos/Logos)
+{-| [Demo](https://lucamug.github.io/style-framework/#/framework/Logos/Logos)
 
 
 # Functions

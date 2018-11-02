@@ -1,13 +1,23 @@
-module Framework.StyleElementsInput exposing (Model, Msg, example0, example1, example10, example11, example2, example3, example4, example5, example6, example7, example8, example9, initModel, introspection, update)
+module Framework.StyleElementsInput exposing
+    ( Model, Msg, example0, example1, example10, example11, example2, example3, example4, example5, example6, example7, example8, example9, initModel, update
+    , introspection
+    )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Style-Elements%20Input/Button)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Style-Elements%20Input/Button)
 
 Style-elements Input (Alpha version) Examples
 
 
 # Functions
 
-@docs Model, Msg, example0, example1, example10, example11, example2, example3, example4, example5, example6, example7, example8, example9, initModel, introspection, update
+@docs Model, Msg, example0, example1, example10, example11, example2, example3, example4, example5, example6, example7, example8, example9, initModel, update
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection
 
 -}
 
@@ -66,7 +76,7 @@ introspection :
     }
 introspection =
     { name = "Style-Elements Input"
-    , description = "This is a raw list of all elements of style-elements as they are"
+    , description = "This is a raw list of all elements of elm-ui as they are"
     , signature = ""
     , variations =
         [ ( "Button", [ ( text "special: example0", "" ) ] )

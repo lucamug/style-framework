@@ -1,11 +1,13 @@
 module Framework.StyleElements exposing (introspection)
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Style-Elements/Basic%20Elements)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Style-Elements/Basic%20Elements)
 
 Style-elements (Alpha version) Examples
 
 
-# Functions
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
 
 @docs introspection
 
@@ -14,8 +16,7 @@ Style-elements (Alpha version) Examples
 import Element exposing (Element, column, download, downloadAs, el, image, link, newTabLink, none, row, spacing, text)
 
 
-{-| Used to generate the [Style Guide](https://lucamug.github.io/elm-style-framework/)
--}
+{-| -}
 introspection :
     { name : String
     , description : String
@@ -24,7 +25,7 @@ introspection :
     }
 introspection =
     { name = "Style-Elements"
-    , description = "This is a raw list of all elements of style-elements as they are"
+    , description = "This is a raw list of all elements of elm-ui as they are"
     , signature = ""
     , variations =
         [ ( "Basic Elements"

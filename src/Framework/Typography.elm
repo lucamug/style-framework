@@ -1,11 +1,29 @@
-module Framework.Typography exposing (h1, h2, h3, h4, h5, h6, introspection, textExtraSmall, textLead, textSmall)
+module Framework.Typography exposing
+    ( h1, h2, h3, h4, h5, h6
+    , textLead, textSmall, textExtraSmall
+    , introspection
+    )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Typography/Heading)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Typography/Heading)
+
+[![Typography](https://lucamug.github.io/style-framework/images/demos/typography.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Typography/Heading)
 
 
-# Functions
+# Headings
 
-@docs h1, h2, h3, h4, h5, h6, introspection, textExtraSmall, textLead, textSmall
+@docs h1, h2, h3, h4, h5, h6
+
+
+# Others
+
+@docs textLead, textSmall, textExtraSmall
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection
 
 -}
 

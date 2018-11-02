@@ -1,19 +1,18 @@
-port module Framework exposing
-    ( Conf, Flags, Introspection, Model, Msg(..), init, initCmd, initConf, initModel, introspections, main, subscriptions, update, view, viewPage
-    , portFrameworkJsOnPopState
+module Framework exposing
+    ( Conf, Flags, Model, Msg(..)
+    , init, initCmd, initConf, initModel, subscriptions, update, view, viewPage, viewDocument, main
+    , Introspection, introspections
     )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/)
+{-| [Demo](https://lucamug.github.io/style-framework/)
 
-This simple package generates a page with Style Guides.
-It uses certain data structure that each section of the framework expose ([Example](https://lucamug.github.io/elm-styleguide-generator/), [Example source](https://github.com/lucamug/elm-styleguide-generator/blob/master/examples/Main.elm)).
+This file (`Framework.elm`) is used to generate the **Living Style Guides**.
 
-The idea is to have a Living version of the Style Guide that always stays
-updated with no maintenance.
+The idea is to have a living version of the Style Guide that stays always updated without manual intervention.
 
 For more info about the idea, see [this post](https://medium.com/@l.mugnaini/zero-maintenance-always-up-to-date-living-style-guide-in-elm-dbf236d07522).
 
-There are three way to configure/customize this package.
+There are three ways to configure and customize this package.
 
 
 ## Overwrite variables
@@ -32,7 +31,7 @@ ALso add `module FrameworkConfiguration exposing (configuration)` at the very to
 In this example we are replacing the primary color with#909.
 
 
-## Chnage the automatically-generated-styleguide
+## Change the automatically-generated-styleguide
 
   - To change the automatically-generated-styleguide logo, title and description you need to pass a new configuration file. SOmething like:
 
@@ -72,7 +71,7 @@ view model =
 
 introspections : List ( Framework.Introspection, Bool )
 introspections =
-    [ ( <| Color.toElementColor Color.introspection, True )
+    [ ( Color.introspection, True )
     , ( Logo.introspection, True )
     , ( Icon.introspection, True )
     ]
@@ -95,13 +94,23 @@ please add it to the package and contribute to the opensource!
 For any issue or to get in touch with the authors, refer to the github page.
 
 
+# Types
+
+@docs Conf, Flags, Model, Msg
+
+
 # Functions
 
-@docs Conf, Flags, Introspection, Model, Msg, init, initCmd, initConf, initModel, introspections, main, subscriptions, update, view, viewPage
+@docs init, initCmd, initConf, initModel, subscriptions, update, view, viewPage, viewDocument, main
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/style-framework/generated-framework.html)
+
+@docs Introspection, introspections
 
 -}
-
---import Element.Input as Input
 
 import Browser
 import Browser.Events
@@ -127,9 +136,6 @@ import Framework.StyleElementsInput as StyleElementsInput
 import Framework.Typography as Typography
 import Html
 import Html.Attributes
-import Http
-import Json.Decode
-import Json.Decode.Pipeline
 import Url
 import Url.Parser exposing ((</>))
 
@@ -142,11 +148,11 @@ debug =
 {-| Configuration
 -}
 type alias Conf msg =
-    { gray3 : Color.Color
-    , gray9 : Color.Color
-    , grayB : Color.Color
-    , grayD : Color.Color
-    , grayF : Color.Color
+    { grey3 : Color.Color
+    , grey9 : Color.Color
+    , greyB : Color.Color
+    , greyD : Color.Color
+    , greyF : Color.Color
     , titleLeftSide : Element msg
     , title : Element msg
     , subTitle : String
@@ -162,11 +168,11 @@ type alias Conf msg =
 {-| -}
 initConf : Conf msg
 initConf =
-    { gray3 = Color.rgb 0x33 0x33 0x33
-    , gray9 = Color.rgb 0x99 0x99 0x99
-    , grayB = Color.rgb 0xB6 0xB6 0xB6
-    , grayD = Color.rgb 0xD1 0xD1 0xD1
-    , grayF = Color.rgb 0xF7 0xF7 0xF7
+    { grey3 = Color.rgb 0x33 0x33 0x33
+    , grey9 = Color.rgb 0x99 0x99 0x99
+    , greyB = Color.rgb 0xB6 0xB6 0xB6
+    , greyD = Color.rgb 0xD1 0xD1 0xD1
+    , greyF = Color.rgb 0xF7 0xF7 0xF7
     , titleLeftSide =
         column []
             [ link []
@@ -220,7 +226,7 @@ initConf =
                 ]
             ]
     , subTitle = "FRAMEWORK"
-    , version = "0.19"
+    , version = "1.0.0"
     , introduction = none
     , mainPadding = 41
     , password = ""
@@ -233,7 +239,7 @@ initConf =
                 , Font.color <| Color.toElementColor Color.black
                 ]
                 { label = image [ width <| px 60, alpha 0.5 ] { src = "images/github.png", description = "Fork me on Github" }
-                , url = "https://github.com/lucamug/elm-style-framework"
+                , url = "https://github.com/lucamug/style-framework"
                 }
     , hostnamesWithoutPassword = \hostname -> hostname == "localhost"
     }
@@ -282,14 +288,6 @@ maybeSelected model =
         Just ( introspection, variation )
 
 
-decodeFlags : Json.Decode.Decoder Flags
-decodeFlags =
-    Json.Decode.succeed Flags
-        |> Json.Decode.Pipeline.required "width" Json.Decode.int
-        |> Json.Decode.Pipeline.required "height" Json.Decode.int
-        |> Json.Decode.Pipeline.required "locationHref" Json.Decode.string
-
-
 {-| -}
 type alias WindowSize =
     { width : Int, height : Int }
@@ -306,11 +304,13 @@ type alias Model =
     , introspections : List ( Introspection, Bool )
     , password : String
     , conf : Conf Msg
+    , key : Browser.Navigation.Key
     }
 
 
-initModel : Flags -> Model
-initModel flags =
+{-| -}
+initModel : Flags -> Url.Url -> Browser.Navigation.Key -> Model
+initModel flags url key =
     { maybeUrl = Url.fromString flags.locationHref
     , password = ""
     , modelStyleElementsInput = StyleElementsInput.initModel
@@ -328,20 +328,21 @@ initModel flags =
 
         else
             introspectionsForDebugging
+    , key = key
     }
 
 
 {-| -}
-initCmd : Cmd msg
-initCmd =
+initCmd : Flags -> Url.Url -> Browser.Navigation.Key -> Cmd Msg
+initCmd _ _ _ =
     Cmd.batch []
 
 
 {-| -}
-init : Flags -> ( Model, Cmd Msg )
-init flags =
-    ( initModel flags
-    , initCmd
+init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
+init flags url key =
+    ( initModel flags url key
+    , initCmd flags url key
     )
 
 
@@ -427,20 +428,27 @@ type Msg
     | MsgChangePassword String
     | MsgNoOp
       -- NAVIGATION
-    | MsgFromPortJsOnPopState String
+    | LinkClicked Browser.UrlRequest
+    | UrlChanged Url.Url
 
 
 {-| -}
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        LinkClicked urlRequest ->
+            case urlRequest of
+                Browser.Internal url ->
+                    ( model, Browser.Navigation.pushUrl model.key (Url.toString url) )
+
+                Browser.External href ->
+                    ( model, Browser.Navigation.load href )
+
+        UrlChanged url ->
+            ( { model | maybeUrl = Just url }, Cmd.none )
+
         MsgNoOp ->
             ( model, Cmd.none )
-
-        MsgFromPortJsOnPopState locationHref ->
-            ( { model | maybeUrl = Url.fromString locationHref }
-            , Cmd.none
-            )
 
         MsgChangePassword password ->
             ( { model | password = password }, Cmd.none )
@@ -531,8 +539,8 @@ pre {
 viewMenuColumn : Model -> Element Msg
 viewMenuColumn model =
     column
-        [ Background.color <| Color.toElementColor model.conf.gray3
-        , Font.color <| Color.toElementColor model.conf.grayB
+        [ Background.color <| Color.toElementColor model.conf.grey3
+        , Font.color <| Color.toElementColor model.conf.greyB
         , width fill
         , height shrink
         , spacing 30
@@ -545,7 +553,7 @@ viewMenuColumn model =
             {- , row
                [ spacing 10
                , Font.size 14
-               , Font.color <| Color.toElementColor model.conf.gray9
+               , Font.color <| Color.toElementColor model.conf.grey9
                , paddingXY 0 20
                ]
                [ el [ pointer, Events.onClick MsgOpenAllSections ] <| text "Expand All"
@@ -586,7 +594,7 @@ viewIntrospectionTitle configuration introspection =
             text introspection.description
     in
     column
-        [ Background.color <| Color.toElementColor configuration.grayF
+        [ Background.color <| Color.toElementColor configuration.greyF
         , padding configuration.mainPadding
         , spacing 10
         , width fill
@@ -656,7 +664,7 @@ viewLogo title subTitle version =
 viewIntrospectionForMenu : Conf Msg -> Introspection -> Bool -> Element Msg
 viewIntrospectionForMenu configuration introspection open =
     column
-        [ Font.color <| Color.toElementColor configuration.gray9
+        [ Font.color <| Color.toElementColor configuration.grey9
         ]
         [ el
             [ pointer
@@ -688,7 +696,7 @@ viewIntrospectionForMenu configuration introspection open =
         , column
             ([ height shrink
              , Font.size 16
-             , Font.color <| Color.toElementColor configuration.grayD
+             , Font.color <| Color.toElementColor configuration.greyD
              , spacing 8
              , paddingEach { bottom = 1, left = 26, right = 0, top = 12 }
              , clip
@@ -742,7 +750,7 @@ viewContentColumn model =
 
 
 {-| This create the entire page of Element type. If you are working
-with style-elements this is the way to go, so you can customize your page.
+with elm-ui this is the way to go, so you can customize your page.
 
 Example, in your Style Guide page:
 
@@ -790,17 +798,7 @@ viewPage maybeWindowSize model =
         ]
 
 
-{-| This create the entire page of Html type.
-
-Example, in your Style Guide page:
-
-    main : Html.Html msg
-    main =
-        Styleguide.viewHtmlPage
-            [ Framework.Button.introspection
-            , Framework.Color.introspection
-            ]
-
+{-| This create the entire page of Browser.Document type.
 -}
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
@@ -811,6 +809,7 @@ viewDocument model =
     }
 
 
+{-| -}
 view : Model -> Html.Html Msg
 view model =
     layoutWith
@@ -831,7 +830,7 @@ view model =
             , conf.font.typefaceFallback
             ]
         , Font.size 16
-        , Font.color <| Color.toElementColor model.conf.gray3
+        , Font.color <| Color.toElementColor model.conf.grey3
         , Background.color <| Color.toElementColor Color.white
         , model.conf.forkMe
         ]
@@ -985,7 +984,7 @@ viewSubSection model ( componentExample, componentExampleSourceCode ) =
 sourceCodeWrapper : Conf msg -> String -> Element Msg
 sourceCodeWrapper configuration sourceCode =
     el
-        [ Background.color <| Color.toElementColor configuration.gray3
+        [ Background.color <| Color.toElementColor configuration.grey3
         , Border.rounded 8
         , width <| fill
         , clip
@@ -996,7 +995,7 @@ sourceCodeWrapper configuration sourceCode =
         -- it doesn't fit. See https://ellie-app.com/38Nf6ygRSMta1
         row
             [ Font.family [ Font.monospace ]
-            , Font.color <| Color.toElementColor configuration.gray9
+            , Font.color <| Color.toElementColor configuration.grey9
             , Font.size 16
             , padding 16
             , width <| px 100
@@ -1034,7 +1033,6 @@ subscriptions : Model -> Sub Msg
 subscriptions _ =
     Sub.batch
         [ Browser.Events.onResize MsgChangeWindowSize
-        , portFrameworkJsOnPopState MsgFromPortJsOnPopState
         ]
 
 
@@ -1130,19 +1128,14 @@ fragmentAsPath url =
             { url | path = fragment }
 
 
-
--- PORTS
-
-
-port portFrameworkJsOnPopState : (String -> msg) -> Sub msg
-
-
 {-| -}
 main : Program Flags Model Msg
 main =
-    Browser.element
+    Browser.application
         { init = init
-        , view = view
+        , view = viewDocument
         , update = update
         , subscriptions = subscriptions
+        , onUrlRequest = LinkClicked
+        , onUrlChange = UrlChanged
         }

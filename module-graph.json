@@ -5,19 +5,19 @@
     ],
     "package": "elm-lang/core"
   },
-  "lucamug/elm-style-framework Framework.Color": {
+  "lucamug/style-framework Framework.Color": {
     "imports": [
       "elm-lang/core Color",
       "mdgriffith/stylish-elephants Element",
       "mdgriffith/stylish-elephants Element.Background",
       "mdgriffith/stylish-elephants Element.Border",
       "mdgriffith/stylish-elephants Element.Font",
-      "lucamug/elm-style-framework Framework.ColorManipulation",
-      "lucamug/elm-style-framework Framework.Configuration"
+      "lucamug/style-framework Framework.ColorManipulation",
+      "lucamug/style-framework Framework.Configuration"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
-  "lucamug/elm-style-framework Framework": {
+  "lucamug/style-framework Framework": {
     "imports": [
       "elm-lang/core Color",
       "mdgriffith/stylish-elephants Element",
@@ -26,18 +26,18 @@
       "mdgriffith/stylish-elephants Element.Events",
       "mdgriffith/stylish-elephants Element.Font",
       "mdgriffith/stylish-elephants Element.Input",
-      "lucamug/elm-style-framework Framework.Button",
-      "lucamug/elm-style-framework Framework.Card",
-      "lucamug/elm-style-framework Framework.Color",
-      "lucamug/elm-style-framework Framework.Configuration",
-      "lucamug/elm-style-framework Framework.FormField",
-      "lucamug/elm-style-framework Framework.FormFieldWithPattern",
-      "lucamug/elm-style-framework Framework.Icon",
-      "lucamug/elm-style-framework Framework.Logo",
-      "lucamug/elm-style-framework Framework.Spinner",
-      "lucamug/elm-style-framework Framework.StyleElements",
-      "lucamug/elm-style-framework Framework.StyleElementsInput",
-      "lucamug/elm-style-framework Framework.Typography",
+      "lucamug/style-framework Framework.Button",
+      "lucamug/style-framework Framework.Card",
+      "lucamug/style-framework Framework.Color",
+      "lucamug/style-framework Framework.Configuration",
+      "lucamug/style-framework Framework.FormField",
+      "lucamug/style-framework Framework.FormFieldWithPattern",
+      "lucamug/style-framework Framework.Icon",
+      "lucamug/style-framework Framework.Logo",
+      "lucamug/style-framework Framework.Spinner",
+      "lucamug/style-framework Framework.StyleElements",
+      "lucamug/style-framework Framework.StyleElementsInput",
+      "lucamug/style-framework Framework.Typography",
       "elm-lang/html Html",
       "elm-lang/html Html.Attributes",
       "elm-lang/http Http",
@@ -45,7 +45,7 @@
       "evancz/url-parser UrlParser",
       "elm-lang/window Window"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "danielnarey/elm-color-math ColorMath.Hex8": {
     "imports": [
@@ -62,34 +62,34 @@
     ],
     "package": "danielnarey/elm-color-math"
   },
-  "lucamug/elm-style-framework Framework.Spinner": {
+  "lucamug/style-framework Framework.Spinner": {
     "imports": [
       "elm-lang/core Color",
       "mdgriffith/stylish-elephants Element",
-      "lucamug/elm-style-framework Framework.ColorManipulation",
+      "lucamug/style-framework Framework.ColorManipulation",
       "elm-lang/html Html",
       "elm-lang/svg Svg",
       "elm-lang/svg Svg.Attributes"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/core Platform.Cmd": {
     "imports": [],
     "package": "elm-lang/core"
   },
-  "lucamug/elm-style-framework Framework.Icon": {
+  "lucamug/style-framework Framework.Icon": {
     "imports": [
       "elm-lang/core Color",
       "mdgriffith/stylish-elephants Element",
-      "lucamug/elm-style-framework Framework.Color",
-      "lucamug/elm-style-framework Framework.ColorManipulation",
+      "lucamug/style-framework Framework.Color",
+      "lucamug/style-framework Framework.ColorManipulation",
       "elm-lang/html Html.Attributes",
       "elm-lang/svg Svg",
       "elm-lang/svg Svg.Attributes"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
-  "lucamug/elm-style-framework Framework.FormFieldWithPattern": {
+  "lucamug/style-framework Framework.FormFieldWithPattern": {
     "imports": [
       "mdgriffith/stylish-elephants Element",
       "mdgriffith/stylish-elephants Element.Background",
@@ -97,12 +97,12 @@
       "mdgriffith/stylish-elephants Element.Events",
       "mdgriffith/stylish-elephants Element.Font",
       "mdgriffith/stylish-elephants Element.Input",
-      "lucamug/elm-style-framework Framework.Color",
-      "lucamug/elm-style-framework Framework.Configuration",
+      "lucamug/style-framework Framework.Color",
+      "lucamug/style-framework Framework.Configuration",
       "elm-lang/html Html.Attributes",
       "elm-lang/core Regex"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/core List": {
     "imports": [
@@ -123,11 +123,11 @@
     ],
     "package": "elm-lang/core"
   },
-  "lucamug/elm-style-framework Framework.StyleElements": {
+  "lucamug/style-framework Framework.StyleElements": {
     "imports": [
       "mdgriffith/stylish-elephants Element"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/core Json.Encode": {
     "imports": [
@@ -135,12 +135,12 @@
     ],
     "package": "elm-lang/core"
   },
-  "lucamug/elm-style-framework Framework.ColorManipulation": {
+  "lucamug/style-framework Framework.ColorManipulation": {
     "imports": [
       "elm-lang/core Char",
       "elm-lang/core Color"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "mdgriffith/stylish-elephants Element.Font": {
     "imports": [
@@ -151,14 +151,14 @@
     ],
     "package": "mdgriffith/stylish-elephants"
   },
-  "lucamug/elm-style-framework Framework.Logo": {
+  "lucamug/style-framework Framework.Logo": {
     "imports": [
       "mdgriffith/stylish-elephants Element",
       "elm-lang/html Html",
       "elm-lang/svg Svg",
       "elm-lang/svg Svg.Attributes"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/dom Dom.LowLevel": {
     "imports": [
@@ -210,7 +210,7 @@
     ],
     "package": "elm-lang/virtual-dom"
   },
-  "lucamug/elm-style-framework Framework.Button": {
+  "lucamug/style-framework Framework.Button": {
     "imports": [
       "elm-lang/core Color",
       "mdgriffith/stylish-elephants Element",
@@ -218,14 +218,14 @@
       "mdgriffith/stylish-elephants Element.Border",
       "mdgriffith/stylish-elephants Element.Font",
       "mdgriffith/stylish-elephants Element.Input",
-      "lucamug/elm-style-framework Framework.Color",
-      "lucamug/elm-style-framework Framework.ColorManipulation",
-      "lucamug/elm-style-framework Framework.Configuration",
-      "lucamug/elm-style-framework Framework.Modifier",
-      "lucamug/elm-style-framework Framework.Spinner",
+      "lucamug/style-framework Framework.Color",
+      "lucamug/style-framework Framework.ColorManipulation",
+      "lucamug/style-framework Framework.Configuration",
+      "lucamug/style-framework Framework.Modifier",
+      "lucamug/style-framework Framework.Spinner",
       "elm-lang/html Html.Attributes"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/core Time": {
     "imports": [
@@ -239,17 +239,17 @@
     ],
     "package": "elm-lang/core"
   },
-  "lucamug/elm-style-framework Framework.FormField": {
+  "lucamug/style-framework Framework.FormField": {
     "imports": [
       "mdgriffith/stylish-elephants Element",
       "mdgriffith/stylish-elephants Element.Background",
       "mdgriffith/stylish-elephants Element.Border",
       "mdgriffith/stylish-elephants Element.Events",
       "mdgriffith/stylish-elephants Element.Input",
-      "lucamug/elm-style-framework Framework.Color",
+      "lucamug/style-framework Framework.Color",
       "elm-lang/html Html.Attributes"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "mdgriffith/stylish-elephants Element": {
     "imports": [
@@ -314,15 +314,15 @@
     ],
     "package": "mdgriffith/stylish-elephants"
   },
-  "lucamug/elm-style-framework Framework.Configuration": {
+  "lucamug/style-framework Framework.Configuration": {
     "imports": [
       "elm-lang/core Color",
       "danielnarey/elm-color-math ColorMath.Hex8",
       "elm-lang/core Dict",
       "mdgriffith/stylish-elephants Element.Font",
-      "lucamug/elm-style-framework MyStyle"
+      "lucamug/style-framework MyStyle"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "mdgriffith/stylish-elephants Internal.Events": {
     "imports": [
@@ -334,11 +334,11 @@
     ],
     "package": "mdgriffith/stylish-elephants"
   },
-  "lucamug/elm-style-framework MyStyle": {
+  "lucamug/style-framework MyStyle": {
     "imports": [
       "elm-lang/core Dict"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/http Http": {
     "imports": [
@@ -458,7 +458,7 @@
     ],
     "package": "elm-lang/core"
   },
-  "lucamug/elm-style-framework Framework.Card": {
+  "lucamug/style-framework Framework.Card": {
     "imports": [
       "elm-lang/core Color",
       "mdgriffith/stylish-elephants Element",
@@ -466,11 +466,11 @@
       "mdgriffith/stylish-elephants Element.Border",
       "mdgriffith/stylish-elephants Element.Events",
       "mdgriffith/stylish-elephants Element.Font",
-      "lucamug/elm-style-framework Framework.Color",
+      "lucamug/style-framework Framework.Color",
       "elm-lang/html Html",
       "elm-lang/html Html.Attributes"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/virtual-dom VirtualDom.Metadata": {
     "imports": [
@@ -580,9 +580,9 @@
     ],
     "package": "danielnarey/elm-toolkit"
   },
-  "lucamug/elm-style-framework Framework.Modifier": {
+  "lucamug/style-framework Framework.Modifier": {
     "imports": [],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/core Dict": {
     "imports": [
@@ -593,20 +593,20 @@
     ],
     "package": "elm-lang/core"
   },
-  "lucamug/elm-style-framework Framework.StyleElementsInput": {
+  "lucamug/style-framework Framework.StyleElementsInput": {
     "imports": [
       "mdgriffith/stylish-elephants Element",
       "mdgriffith/stylish-elephants Element.Input"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
-  "lucamug/elm-style-framework Framework.Typography": {
+  "lucamug/style-framework Framework.Typography": {
     "imports": [
       "mdgriffith/stylish-elephants Element",
       "mdgriffith/stylish-elephants Element.Font",
       "mdgriffith/stylish-elephants Element.Region"
     ],
-    "package": "lucamug/elm-style-framework"
+    "package": "lucamug/style-framework"
   },
   "elm-lang/core Regex": {
     "imports": [

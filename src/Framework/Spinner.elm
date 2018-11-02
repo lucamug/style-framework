@@ -1,11 +1,23 @@
-module Framework.Spinner exposing (Spinner(..), spinner, introspection)
+module Framework.Spinner exposing
+    ( Spinner(..), spinner
+    , introspection
+    )
 
-{-| [Demo](https://lucamug.github.io/elm-style-framework/#/framework/Spinners/Spinners)
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Spinners/Spinners)
+
+[![Spinners](https://lucamug.github.io/style-framework/images/demos/spinners.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Spinners/Spinners)
 
 
 # Functions
 
-@docs Spinner, spinner, introspection
+@docs Spinner, spinner
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection
 
 -}
 
@@ -37,7 +49,7 @@ introspection =
     }
 
 
-{-| SVG Spinner
+{-| Example
 
     spinner ThreeCircles 32 Color.black
 

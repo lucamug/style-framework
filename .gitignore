@@ -1,9 +1,4 @@
 elm-stuff
-documentation.json
-IGNORED.md
-svg
-
-src/MyStyle.elm
-docs/build
-package.json
-package-lock.json
+node_modules
+temp
+js-dev

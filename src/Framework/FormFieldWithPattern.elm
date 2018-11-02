@@ -1,11 +1,23 @@
-module Framework.FormFieldWithPattern exposing (Field(..), Model, Msg, example1, example2, example3, initModel, inputText, introspection, update)
+module Framework.FormFieldWithPattern exposing
+    ( inputText
+    , introspection, example1, example2, example3, Field(..), Model, Msg, initModel, update
+    )
 
-{-|
+{-| [Demo](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Fields%20With%20Patterns/Phone%20number%20USA)
+
+[![Fields with patterns](https://lucamug.github.io/style-framework/images/demos/fields-with-patterns.png)](https://lucamug.github.io/style-framework/generated-framework.html#/framework/Fields%20With%20Patterns/Phone%20number%20USA)
 
 
-# Functions
+# Input fields
 
-@docs Field, Model, Msg, example1, example2, example3, initModel, inputText, introspection, update
+@docs inputText
+
+
+# Introspection
+
+Used internally to generate the [Style Guide](https://lucamug.github.io/)
+
+@docs introspection, example1, example2, example3, Field, Model, Msg, initModel, update
 
 -}
 
