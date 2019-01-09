@@ -35,7 +35,8 @@ Element.Input.button :
     ->  { onPress : Maybe msg
         , label : Element msg
 
-        -- Extra
+        -- Extra values
+
         , modifiers : List Modifier
         }
     ->  Element msg
@@ -66,16 +67,17 @@ Framework.Input.text :
         , placeholder : Maybe (Placeholder msg)
         , label : Label msg
 
-        -- Extra
+        -- Extra values
+        
         , modifiers : List Modifier
-        , field : Field
+        , field : field
         , labelHelper : Label msg
         , wrapperAttrs : List (Attribute msg)
-        , focused : Maybe Field
-        , onEnter : Maybe (Field -> msg)
-        , onChangeField : Maybe (Field -> String -> msg)
-        , onFocus : Maybe (Field -> msg)
-        , onLoseFocus : Maybe (Field -> msg)
+        , focused : Maybe field
+        , onEnter : Maybe (field -> msg)
+        , onChangeField : Maybe (field -> String -> msg)
+        , onFocus : Maybe (field -> msg)
+        , onLoseFocus : Maybe (field -> msg)
         }
     -> Element msg
 ```
@@ -92,7 +94,7 @@ Framework.Input.text :
 
 Here we could add something for the validation that fire, for example, only the first time that the field loose focus, so that the validation can start. To avoid validating a field while the user is typing for the first time. But in this case we need to keep track of an extra boolean that need to be stored in the model
 
-### Questions?
+### Questions
 
 * should we use `Field` to identify the field, so is not necessary to have large number of messages?
 * do we need `modifiers`?
