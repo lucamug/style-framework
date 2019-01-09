@@ -18,5 +18,5 @@ As example here we overwrite `primary` with the color `#00d1b2`
 configuration : Dict.Dict String String
 configuration =
     Dict.fromList
-        [ ( "primary", "#ood1b2" )
+        [ ( "primary", "#00d1b2" )
         ]

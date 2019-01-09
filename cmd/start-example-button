@@ -1,4 +1,4 @@
 #!/bin/bash
-cp src/myStyle.elm.example src/myStyle.elm
+cp src/MyStyle.elm.example src/MyStyle.elm
 cd examples/exampleButton
 ../../node_modules/.bin/elm-live src/Main.elm --dir=docs --path-to-elm ../../node_modules/.bin/elm --port=8004 -- --debug --output=docs/js-dev/main.js

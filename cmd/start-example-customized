@@ -1,4 +1,4 @@
 #!/bin/bash
-rm src/myStyle.elm
+rm src/MyStyle.elm
 cd examples/exampleCustomized
 ../../node_modules/.bin/elm-live src/FrameworkCustomized.elm --dir=docs --path-to-elm ../../node_modules/.bin/elm --port=8002 -- --debug --output=docs/js-dev/main.js
