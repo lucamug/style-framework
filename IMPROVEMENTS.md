@@ -68,7 +68,7 @@ Framework.Input.text :
         , label : Label msg
 
         -- Extra values
-        
+
         , modifiers : List Modifier
         , field : field
         , labelHelper : Label msg
@@ -98,3 +98,97 @@ Here we could add something for the validation that fire, for example, only the 
 
 * should we use `Field` to identify the field, so is not necessary to have large number of messages?
 * do we need `modifiers`?
+
+## Field or not Field?
+
+The type Field can be used to reduce the number of messages, simplifying the `update` function.
+This is how it works:
+
+### Without Field
+
+Let's suppose we have two input fields, `Email` and `Password`.
+
+Usually we would need to handle all messages separately, so we will have:
+
+```
+type Msg
+    = OnChangeEmail String
+    | OnChangePassword String
+    | OnFocusEmail
+    | OnFocusPassword
+    | OnLoseFocusEmail
+    | OnLoseFocusPassword
+```
+
+and the `update` will be
+
+```
+update model msg =
+    case msg of
+        OnChangeEmail email ->
+            ( { model | email = email }, Cmd.none )
+
+        OnChangePassword password ->
+            ( { model | password = password }, Cmd.none )
+
+        OnFocusEmail ->
+            ( { model | emailFocused = True }, Cmd.none )
+
+        OnFocusPassword
+            ( { model | passwordFocused = True }, Cmd.none )
+
+        OnLoseFocusEmail
+            ( { model | emailFocused = False }, Cmd.none )
+
+        OnLoseFocusPassword
+            ( { model | passwordFocused = False }, Cmd.none )
+```
+
+### With Field
+
+We can define a custom time like:
+
+```
+type Field
+    = Email
+    | Password
+```
+
+The message that need to be handled is only three:
+
+```
+type Msg
+    = OnChange Field String
+    = OnFocus Field
+    = OnLoseFocus Field
+```
+
+The update will be:
+
+```
+update model msg =
+    case msg of
+        OnChange field value ->
+            case field of
+                Email ->
+                    ( { model | email = value }, Cmd.none )
+
+                Password ->
+                    ( { model | password = value }, Cmd.none )
+
+        OnFocus field ->
+            ( { model | focused = Just field }, Cmd.none )
+
+        OnLoseFocus field ->
+            ( { model | focused = Nothing }, Cmd.none )            
+```
+
+This is possible because there could be only one field focused at every single moment.
+
+Note: Is there a `race condition` about focus? When a new field is focused, the messages should arrive in the sequence:
+
+```
+OnLoseFocus old_field -> OnFocus new_field
+```
+
+If the sequence is reversed, the above `update` is not going to work.
