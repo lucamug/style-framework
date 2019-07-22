@@ -3,7 +3,7 @@
     "name": "lucamug/style-framework",
     "summary": "A style framework built on top of elm-ui.",
     "license": "BSD-3-Clause",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "exposed-modules": [
         "Framework",
         "Framework.Button",
