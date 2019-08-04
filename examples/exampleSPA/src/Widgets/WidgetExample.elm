@@ -10,7 +10,6 @@ module Widgets.WidgetExample exposing
 
 import Browser
 import Browser.Events
-import Color
 import Element exposing (..)
 import Element.Background as Background
 import Element.Font as Font
@@ -139,7 +138,7 @@ viewElement model =
             }
 
 
-iconColor : Color.Color
+iconColor : Element.Color
 iconColor =
     Framework.Color.grey
 

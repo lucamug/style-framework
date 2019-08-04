@@ -21,7 +21,6 @@ Used internally to generate the [Style Guide](https://lucamug.github.io/)
 
 -}
 
-import Color
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -269,10 +268,10 @@ inputText model { id, field, pattern, label } =
              , behindContent <|
                 el
                     ([ if hasFocus model field && largeSize then
-                        Font.color <| Color.toElementColor Framework.Color.primary
+                        Font.color Framework.Color.primary
 
                        else
-                        Font.color <| Color.toElementColor Framework.Color.grey_light
+                        Font.color Framework.Color.grey_light
                      , moveDown moveDownPlaceHolder
                      , hackInLineStyle "pointer-events" "none"
                      , hackInLineStyle "letter-spacing" letterSpacing
@@ -289,7 +288,7 @@ inputText model { id, field, pattern, label } =
              ]
                 ++ font
                 ++ (if hasFocus model field then
-                        [ Border.color <| Color.toElementColor Framework.Color.primary ]
+                        [ Border.color Framework.Color.primary ]
 
                     else
                         []

@@ -21,7 +21,6 @@ Used internally to generate the [Style Guide](https://lucamug.github.io/)
 
 -}
 
-import Color
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -184,10 +183,10 @@ newHelperText enteredField field value =
 
 
 {-| -}
-helperTextFormat : String -> Color.Color -> Element msg
+helperTextFormat : String -> Element.Color -> Element msg
 helperTextFormat t color =
     row
-        [ Font.color <| Color.toElementColor color
+        [ Font.color color
         , Font.size 12
         , spacing 4
         ]
@@ -197,15 +196,15 @@ helperTextFormat t color =
 
 
 {-| -}
-errorColor : Color.Color
+errorColor : Element.Color
 errorColor =
-    Color.rgb 200 0 0
+    Element.rgb255 200 0 0
 
 
 {-| -}
-infoColor : Color.Color
+infoColor : Element.Color
 infoColor =
-    Color.rgb 0 150 0
+    Element.rgb255 0 150 0
 
 
 {-| -}
@@ -544,7 +543,7 @@ attrs { msgOnFocus, msgOnLoseFocus, maybeMsgOnEnter, inputTypeAttrs, field, mayb
     , htmlAttribute <| Html.Attributes.style "transition" "all 0.15s"
     ]
         ++ (if focused then
-                [ Border.color <| Color.toElementColor Framework.Color.primary ]
+                [ Border.color Framework.Color.primary ]
 
             else
                 []
@@ -763,7 +762,7 @@ inputPassword mainAttrs conf =
                                         icon
 
                                     Nothing ->
-                                        Icon.hide (Color.rgb 100 100 100) 20
+                                        Icon.hide (Element.rgb255 100 100 100) 20
 
                             else
                                 case showHidePassword.maybeShowIcon of
@@ -771,7 +770,7 @@ inputPassword mainAttrs conf =
                                         icon
 
                                     Nothing ->
-                                        Icon.show (Color.rgb 100 100 100) 20
+                                        Icon.show (Element.rgb255 100 100 100) 20
                     ]
 
                 Nothing ->

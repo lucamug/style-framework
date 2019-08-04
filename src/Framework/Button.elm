@@ -39,13 +39,13 @@ Used internally to generate the [Style Guide](https://lucamug.github.io/)
 
 -}
 
-import Color
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Input as Input
 import Framework.Color
+import Framework.Color.Extra
 import Framework.Configuration exposing (conf)
 import Framework.Modifier exposing (Modifier(..))
 import Framework.Spinner as Spinner
@@ -172,7 +172,7 @@ type State
 
 
 type alias Conf =
-    { color : Color.Color
+    { color : Element.Color
     , size : Size
     , state : State
     }
@@ -342,12 +342,12 @@ buttonCustomizable { onPress, modifiers, label, width, extraAttrs } =
         }
 
 
-colorDefault : Color.Color
+colorDefault : Element.Color
 colorDefault =
     Framework.Color.white
 
 
-colorBorderDefault : Color.Color
+colorBorderDefault : Element.Color
 colorBorderDefault =
     Framework.Color.grey_lighter
 
@@ -384,13 +384,13 @@ buttonAttr modifiers =
 
                 _ ->
                     backgroundColor
-                        |> Color.lighten 0.8
-                        |> Color.saturate 0.9
+                        |> Framework.Color.Extra.lighten 0.8
+                        |> Framework.Color.Extra.saturate 0.9
 
         borderMouseOverColor =
             borderColor
-                |> Color.lighten 0.8
-                |> Color.saturate 0.9
+                |> Framework.Color.Extra.lighten 0.8
+                |> Framework.Color.Extra.saturate 0.9
 
         fontMouseOverColor =
             case confButton.state of
@@ -405,8 +405,8 @@ buttonAttr modifiers =
 
                 _ ->
                     fontColor
-                        |> Color.lighten 0.8
-                        |> Color.saturate 0.9
+                        |> Framework.Color.Extra.lighten 0.8
+                        |> Framework.Color.Extra.saturate 0.9
 
         backgroundColor =
             case confButton.state of
@@ -497,21 +497,21 @@ buttonAttr modifiers =
                     []
     in
     [ Font.size fontSize
-    , Font.color <| Color.toElementColor fontColor
-    , Background.color <| Color.toElementColor backgroundColor
+    , Font.color fontColor
+    , Background.color backgroundColor
     , paddingXY (Tuple.first buttonPadding) (Tuple.second buttonPadding)
     , Border.rounded borderRounded
     , Border.width 1
-    , Border.color <| Color.toElementColor borderColor
+    , Border.color borderColor
     ]
         ++ (if confButton.state == StateDisabled then
                 [ htmlAttribute <| Html.Attributes.style "cursor" "not-allowed" ]
 
             else
                 [ mouseOver
-                    [ Font.color <| Color.toElementColor fontMouseOverColor
-                    , Background.color <| Color.toElementColor backgroundMouseOverColor
-                    , Border.color <| Color.toElementColor borderMouseOverColor
+                    [ Font.color fontMouseOverColor
+                    , Background.color backgroundMouseOverColor
+                    , Border.color borderMouseOverColor
                     ]
                 ]
            )

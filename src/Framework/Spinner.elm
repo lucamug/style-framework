@@ -21,8 +21,9 @@ Used internally to generate the [Style Guide](https://lucamug.github.io/)
 
 -}
 
-import Color
 import Element
+import Framework.Color
+import Framework.Color.Extra
 import Html
 import Svg
 import Svg.Attributes as SA
@@ -41,8 +42,8 @@ introspection =
     , signature = ""
     , variations =
         [ ( "Spinners"
-          , [ ( spinner ThreeCircles 32 Color.black, "spinner ThreeCircles 32 Color.black" )
-            , ( spinner Rotation 32 Color.black, "spinner Rotation 32 Color.black" )
+          , [ ( spinner ThreeCircles 32 Framework.Color.black, "spinner ThreeCircles 32 Color.black" )
+            , ( spinner Rotation 32 Framework.Color.black, "spinner Rotation 32 Color.black" )
             ]
           )
         ]
@@ -54,7 +55,7 @@ introspection =
     spinner ThreeCircles 32 Color.black
 
 -}
-spinner : Spinner -> Int -> Color.Color -> Element.Element msg
+spinner : Spinner -> Int -> Element.Color -> Element.Element msg
 spinner sp size color =
     Element.html <|
         case sp of
@@ -72,11 +73,11 @@ type Spinner
     | Rotation
 
 
-spinnerThreeCirclesHtml : Int -> Color.Color -> Html.Html msg
+spinnerThreeCirclesHtml : Int -> Element.Color -> Html.Html msg
 spinnerThreeCirclesHtml size color =
     let
         colorString =
-            Color.colorToHex color
+            Framework.Color.Extra.colorToHex color
     in
     Svg.svg
         [ SA.viewBox "10 26 44 12"
@@ -124,11 +125,11 @@ spinnerThreeCirclesHtml size color =
         ]
 
 
-spinnerRotationHtml : Int -> Color.Color -> Html.Html msg
+spinnerRotationHtml : Int -> Element.Color -> Html.Html msg
 spinnerRotationHtml size color =
     let
         colorString =
-            Color.colorToHex color
+            Framework.Color.Extra.colorToHex color
 
         idElement =
             "id" ++ String.dropLeft 1 colorString

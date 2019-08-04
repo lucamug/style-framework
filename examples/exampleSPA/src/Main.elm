@@ -2,7 +2,6 @@ module ExampleSPA exposing (main)
 
 import Browser
 import Browser.Events
-import Color
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -149,7 +148,7 @@ centralColumnWithMaxWidth attributes maxWidth content =
 viewHeader : Model -> Element Msg
 viewHeader model =
     centralColumnWithMaxWidth
-        [ Background.color <| Color.toElementColor Framework.Color.white
+        [ Background.color Framework.Color.white
         , Border.shadow { offset = ( 0, 0 ), blur = 10, size = 2, color = Element.rgba 0 0 0 0.05 }
 
         --, hackStyle "z-index" "1"
@@ -179,7 +178,7 @@ viewStylish model =
     layoutWith
         { options =
             [ focusStyle
-                { borderColor = Just <| Color.toElementColor Framework.Color.primary
+                { borderColor = Just Framework.Color.primary
                 , backgroundColor = Nothing
                 , shadow = Nothing
                 }
@@ -246,6 +245,8 @@ viewElement model =
         ]
         [ viewHeader model
         , viewBody model
+
+        -- , el [ Font.color <| Framework.Color.white ] <| text "hi"
         ]
 
 
@@ -284,7 +285,7 @@ viewBody model =
         , background
         , htmlAttribute <| Html.Attributes.id "SPA-backdrop"
         , htmlAttribute <| Html.Events.on "click" (Json.Decode.map MsgClick decoder)
-        , Border.color <| Color.toElementColor Framework.Color.primary
+        , Border.color Framework.Color.primary
         ]
     <|
         case Route.fromUrl model.url of
@@ -326,7 +327,7 @@ decoder =
 viewSelectWidget : Element Msg
 viewSelectWidget =
     Element.paragraph
-        [ Background.color <| Color.toElementColor Framework.Color.white
+        [ Background.color Framework.Color.white
         , padding 20
         , centerX
         , centerY
@@ -354,8 +355,8 @@ viewFrame model content =
             [ Border.rounded 4
             , Border.shadow { offset = ( 0, 5 ), blur = 15, size = 3, color = Element.rgba 0 0 0 0.05 }
             , redLineAtTheFrameTop
-            , Border.color <| Color.toElementColor Framework.Color.primary
-            , Background.color <| Color.toElementColor Framework.Color.white
+            , Border.color Framework.Color.primary
+            , Background.color Framework.Color.white
             , hackStyle "max-width" "500px"
             , height <| px 400
             , width fill
