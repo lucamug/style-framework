@@ -41,7 +41,7 @@ main =
             Nothing
             "Button"
 ```
-This is [the result](https://lucamug.github.io/style-framework/exampleButton.html):
+This is [the result](https://lucamug.github.io/style-framework/generated-exampleButton.html):
 
 [![Button](https://lucamug.github.io/style-framework/images/framework-button-example.png)](https://lucamug.github.io/style-framework/exampleButton.html)
 
