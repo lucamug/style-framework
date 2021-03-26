@@ -1,3 +1,7 @@
+# Note
+
+`style-framework` is not actively maintained anymore.
+
 # Style Framework
 
 [Demo](https://lucamug.github.io/style-framework/)
